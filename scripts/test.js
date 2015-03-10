@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var l = require("log");
 l.setLevel("debug");
 l.info("{ \"<b>name</b>\" : \"julien\" }");

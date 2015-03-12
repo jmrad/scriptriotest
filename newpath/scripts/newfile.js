@@ -1,8 +1,6 @@
 /** Script ACLs do not delete 
  read=nobody 
-wrasdfdsa
-execute=authenticated 
+write=nobody
+execute=anonymous 
   **/ 
-/** test
-**/
- return "newfile";   							
+ return "newfile";   				   							

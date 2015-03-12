@@ -1,4 +1,3 @@
-/** Script ACLs do not delete 
- read=nobody 
-
+/** test
+**/
  return "newfile";   							

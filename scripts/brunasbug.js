@@ -3,4 +3,5 @@
 write=nobody
 execute=anonymous 
   **/ 
+  a = 9;
  return 1;   							

@@ -3,4 +3,4 @@
 write=nobody
 execute=anonymous 
   **/ 
- return "newfile";   				   							
+ return "newfile1";   				   							

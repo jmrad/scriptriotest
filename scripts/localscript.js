@@ -3,4 +3,5 @@
 write=nobody
 execute=authenticated 
   **/ 
- return "local";   							
+ a = "local";
+return a;   							

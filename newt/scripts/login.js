@@ -4,4 +4,4 @@ write=nobody
 execute=anonyme 
   **/ 
  
-return "login.js";
+return "login.js1";

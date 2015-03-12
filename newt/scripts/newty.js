@@ -3,4 +3,4 @@
 write=nobody
 execute=authenticated 
   **/ 
- return "new test";   							
+ return "new test1";   							

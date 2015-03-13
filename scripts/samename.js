@@ -1,7 +1,7 @@
 /** Script ACLs do not delete 
  read=nobody 
 write=nobody
-execute=anonymous 
+execute=nobody 
   **/ 
  return "this is weird";
    							

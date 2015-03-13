@@ -1,7 +1,7 @@
 /** Script ACLs do not delete 
  read=nobody 
 write=nobody
-execute=authenticated 
+execute=anonymous 
   **/ 
- 
- return "new test1";   							
+ return "new tssdsest1dfdg";   							
+   							

@@ -10,11 +10,11 @@ var callbackUrl = "http://test.scriptr.io";
 var consumerKey = request.parameters["consumerKey"];
 var consumerSecret = request.parameters["consumerSecret"];
 
-var tokens = {
-  "consumerKey": consumerKey,
-  "consumerSecret": consumerSecret
+var credentials = {
+	"consumerKey": "pnB82bHGXC0GPBOvGPGDwvxkc",
+	"consumerSecret": "ESUrwOXn8actHJtymKn5cBd5P9cu7fmTrAk5Yq4dABxWED5Dpj"
 };
 
-var response = twitter.getRequestToken(callbackUrl, tokens);
+var response = twitter.getRequestToken(callbackUrl, credentials);
 
-return response;   							
+return response;   				   				   				   				   							

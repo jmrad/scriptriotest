@@ -3,6 +3,4 @@
 write=nobody
 execute=authenticated 
   **/ 
- // this is blah blah bluh bluh
-return "nothing";
-   							
+ return request.parameters["age"];   				   							

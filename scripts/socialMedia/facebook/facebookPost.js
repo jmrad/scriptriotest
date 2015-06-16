@@ -14,7 +14,7 @@ formattedDate += currentDate.getTimezoneOffset() < 0 ? "+" : "-";
 formattedDate += atLeastTwoDigits((Math.abs(currentDate.getTimezoneOffset()) / 60)) + "00";
 
 var credentials = {
-  "consumerKey": "341726685895718",
+  "apiKey": "341726685895718",
   "consumerSecret": "62d55f6f76433f42c644ef2e9caf91bf",
   "accessToken": "CAAE2zHG5HCYBAKnvZCb0e9EwIZAGqNhqDODvLfHHZChOZCkShI0kfFfolUPhaWGZBurLV1LpVuXLJJxb7ZCyqcdGTrwvhzcpbUQZAqNprl6bXMcQXFMEjRnahMeDYACdreEH7BpUtPZAkizyykqGu6uNaHM25d5AM3uigS7d84F7ZBmNsAoSD1Upbq0PbUiA34RdxAN2EqZALDJ6ZAPofHdzOQm"
 };
@@ -23,4 +23,4 @@ return facebookPost("This is a beautiful posting day, Holla Scriptr! " + formatt
 
 function atLeastTwoDigits (value) {
     return value < 10 ? "0" + value : value;
-}   				   				   				   				   				   							
+}   				   				   				   				   				   				   							

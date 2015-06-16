@@ -18,9 +18,9 @@ var method = "POST";
 
 //Define the credentials
 var credentials = {
-  "consumerKey": "341726685895718",
-  "consumerSecret": "62d55f6f76433f42c644ef2e9caf91bf",
+  "apiKey": "341726685895718",
+  "apiSecret": "62d55f6f76433f42c644ef2e9caf91bf",
   "accessToken": "CAAE2zHG5HCYBAKnvZCb0e9EwIZAGqNhqDODvLfHHZChOZCkShI0kfFfolUPhaWGZBurLV1LpVuXLJJxb7ZCyqcdGTrwvhzcpbUQZAqNprl6bXMcQXFMEjRnahMeDYACdreEH7BpUtPZAkizyykqGu6uNaHM25d5AM3uigS7d84F7ZBmNsAoSD1Upbq0PbUiA34RdxAN2EqZALDJ6ZAPofHdzOQm"
 };
 
-return fb.callApi(url, method, params, credentials);   				   				   							
+return fb.callApi(url, method, params, credentials);   				   				   				   				   				   							

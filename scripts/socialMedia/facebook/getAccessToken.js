@@ -7,11 +7,11 @@ execute=authenticated
 
 var callbackUrl = "http://www.scriptr.io/";
 
-var oauthVerifier = "AQAJRPPon9fUeqY7jl6lu-F8NyKWzPxU4Z_AyphaHVqsUsyiDWbF_3RXxGweXt1yinhWKzx-oaPTa2WN9b9M640T6HIYv8ZGYn5gA1VPdv4NFt_I5rzbq8ExOaZDD5TLJo6PorYf75d1O66ClIaD9edq75WRZ7UOiHfV-1O2br6NMEVrYZLh5SYsUllejA6EQTVlCNgDwWqZ5tPUHqJ1oMz84Vt9t1q2i8oUsGqBsw2AilBGbr_9uWWgbsVHafmGaM_Df2hMEo2k8B1D-lPqQNo4F6AnxJU-KG9NcMfGBXCd335EtksiPlI9qSbuLqm5hGrYQTKVBzBqW-VQ1ipWRgdd";
+var oauthVerifier = "AQBHLV7gVpGVCfuZifMP1UTPlNMR96h8fBwo94MbEWb9BE34zB9JM8lFFRdICx5Vsz1ERvdj0tNPqcOS94F5ygICDCOqS2-oRALYcqfWASsHnmhHzL4xstsozpFVLJpAh--tkpScQ_LUi3GM6VabwFRC6O4uHXJ6eaAJS4_gi3L96O758x7giv9g46-BJ8px1sWtdIFCTStA3p-3NStb_XJOWDvOOO3Gcvfve6M_roQuNSOSnQy5X5ER4Q-VQ7FKn0Z0k-3ZCSJ0WDX1UazOBXys64-x7tj7JuAVTm5NLAJaBS2TMtDBALe_lDVDREPwEsXv7i7UtQoHXgJ_GkT4IsU6";
 
 var credentials = {
   "apiKey": "341726685895718",
   "apiSecret": "62d55f6f76433f42c644ef2e9caf91bf"
 };
 
-return fb.getAccessToken(callbackUrl, oauthVerifier, credentials);   				   				   				   							
+return fb.getAccessToken(callbackUrl, oauthVerifier, credentials);   				   				   				   				   				   				   							

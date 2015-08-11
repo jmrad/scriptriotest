@@ -1,7 +1,7 @@
 /** Script ACLs do not delete 
  read=nobody 
 write=nobody
-execute=authenticated 
+execute=anonymous 
   **/ 
  var twitter = require("twitter");
 
@@ -21,4 +21,4 @@ var params = {
 	"count": "10"
 };
 
-return twitter.callApi(resource_url, method, params, credentials);   							
+return twitter.callApi(resource_url, method, params, credentials);   				   				   							

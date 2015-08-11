@@ -21,4 +21,4 @@ var params = {
 	"count": "10"
 };
 
-return twitter.getApiCall(resource_url, method, params, credentials);   							
+return twitter.getApiCall(resource_url, method, params, credentials);   				   							

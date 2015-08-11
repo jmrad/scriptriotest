@@ -11,7 +11,7 @@ var fb = require("facebook");
 var url = "https://graph.facebook.com/me/feed";
 
 //Define additional parmameters to pass
-var params = {"message": "some msg to post", "link" : "http://www.google.com"};
+var params = {"message": "some msg to post from Julz", "link" : "http://www.google.com"};
 
 //Define the HTTP Request Method to use
 var method = "POST";
@@ -23,4 +23,4 @@ var credentials = {
   "accessToken": "CAAE2zHG5HCYBAKnvZCb0e9EwIZAGqNhqDODvLfHHZChOZCkShI0kfFfolUPhaWGZBurLV1LpVuXLJJxb7ZCyqcdGTrwvhzcpbUQZAqNprl6bXMcQXFMEjRnahMeDYACdreEH7BpUtPZAkizyykqGu6uNaHM25d5AM3uigS7d84F7ZBmNsAoSD1Upbq0PbUiA34RdxAN2EqZALDJ6ZAPofHdzOQm"
 };
 
-return fb.callApi(url, method, params, credentials);   				   				   				   				   				   							
+return fb.callApi(url, method, params);   				   				   				   				   				   				   				   				   				   							

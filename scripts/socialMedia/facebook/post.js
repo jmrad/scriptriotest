@@ -12,7 +12,7 @@ var formattedDate = currentDate.getFullYear() + "-" + atLeastTwoDigits(currentDa
 formattedDate += currentDate.getTimezoneOffset() < 0 ? "+" : "-";
 formattedDate += atLeastTwoDigits((Math.abs(currentDate.getTimezoneOffset()) / 60)) + "00";
 
-var message = "Check out this image: http://www.google.com/intl/en_ALL/images/logo.gif";
+var message = "Check out this imagi: http://www.google.com/intl/en_ALL/images/logo.gif";
 
 var credentials = {
   "apiKey": "341726685895718",
@@ -25,4 +25,4 @@ return fb.post(message, credentials);
 
 function atLeastTwoDigits (value) {
     return value < 10 ? "0" + value : value;
-}   				   				   				   				   				   							
+}   				   				   				   				   				   				   				   							

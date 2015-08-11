@@ -15,9 +15,9 @@ var credentials = {
 	"consumerSecret": "ESUrwOXn8actHJtymKn5cBd5P9cu7fmTrAk5Yq4dABxWED5Dpj"
 };
 
-var requestToken = "YtWWfFP8uB1yLAL4Gs1Zi0LrXcLalX3V";
-var requestSecret = "nu6yaLKOHfD8FHwXAZ7lDj94OwYmfMQU";
+var requestToken = "0IEwQAAAAAAAdpyhAAABTnN2lIs";
+var requestSecret = "zjFg4BJjjvIsvpFfAIr8gD8WcWFM1RfB";
 
-var oAuthVerifier = "V5dBHfx6LbULa1GImGmASJWGb9EFHNJf";
+var oAuthVerifier = "pUWIpG8HVg0AdmoUhbh13TrqfOD0Y5By";
 
-return twitter.getAccessToken(requestToken, requestSecret, oAuthVerifier, credentials); 				   				   				   							
+return twitter.getAccessToken(requestToken, requestSecret, oAuthVerifier, credentials); 				   				   				   				   							

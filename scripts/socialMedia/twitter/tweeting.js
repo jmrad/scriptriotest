@@ -3,9 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
- var t = require("twitter")
-var count = 0;
-
+ var count = 0;
 if(!storage.local.counter)
     storage.local.counter = count;
 else
@@ -21,4 +19,4 @@ var credentials = {
 	"accessTokenSecret": "5UKGifHKvY0IiZLfg7HcmADCxs5DQy5lvu5aHCbAS0kVN"
 };
 
-return tweet("this is Julz' tweet #" + count + " coming from socialMedia/tweeting", credentials);   							
+return tweet("this is Julz' tweet #" + count + " coming from socialMedia/tweeting", credentials);   				   							

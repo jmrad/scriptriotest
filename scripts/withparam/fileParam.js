@@ -3,6 +3,4 @@
 write=nobody
 execute=authenticated 
   **/ 
- 
- 
- return request.files["age"];   				   				   							
+ return request.files["t"];   				   							

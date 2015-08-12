@@ -3,7 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
- var count = request.parameters["count"];
+ var count = -10;
 var resultsPerPage = request.parameters["resultsPerPage"];
 var pageNumber = request.parameters["pageNumber"];
 
@@ -14,4 +14,4 @@ var messaging = require("messaging");
 var result = messaging.channel.list(count, resultsPerPage, pageNumber);
 log.debug(result);
 
-return result;     							
+return result;   							

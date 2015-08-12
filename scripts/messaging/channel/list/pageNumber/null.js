@@ -5,7 +5,7 @@ execute=authenticated
   **/ 
  var count = request.parameters["count"];
 var resultsPerPage = request.parameters["resultsPerPage"];
-var pageNumber = request.parameters["pageNumber"];
+var pageNumber = null;
 
 var log = require("log");
 log.setLevel("DEBUG");
@@ -14,4 +14,4 @@ var messaging = require("messaging");
 var result = messaging.channel.list(count, resultsPerPage, pageNumber);
 log.debug(result);
 
-return result;   							
+return result;    							

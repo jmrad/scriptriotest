@@ -3,13 +3,13 @@
 write=nobody
 execute=authenticated 
   **/ 
- var id = 2147483648;
+ var id = 0;
 
 var log = require("log");
 log.setLevel("DEBUG");
 
 var messaging = require("messaging");
-var result = messaging.channel.delete(id);
+var result = messaging.notification.group.delete(id);
 log.debug(result);
 
 return result;   				   							

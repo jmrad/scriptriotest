@@ -6,7 +6,7 @@ execute=authenticated
  var id = request.parameters["id"];
 var update = request.parameters["update"];
 var subscribeACL = request.parameters["subscribeACL"];
-var publishACL = request.parameters["publishACL"];
+var publishACL = "anonymous";
 
 var options = {
   "id": id,
@@ -22,4 +22,4 @@ var messaging = require("messaging");
 var result = messaging.channel.save(options);
 log.debug(result);
 
-return result;     				   							   							
+return result;     				   							   				   				   							

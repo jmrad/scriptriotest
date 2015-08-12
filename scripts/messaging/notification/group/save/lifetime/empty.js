@@ -8,13 +8,11 @@ var platform = request.parameters["platform"];
 
 var update = request.parameters["update"];
 var pushTokens = request.parameters["pushTokens"];
-var lifetime = request.parameters["lifetime"];
 var isProduction = request.parameters["isProduction"];
 
 var options = {
   "update": update,
   "pushTokens": pushTokens,
-  "lifetime": lifetime,
   "isProduction": isProduction
 }
 
@@ -25,4 +23,4 @@ var messaging = require("messaging");
 var result = messaging.notification.group.save(id, platform, options);
 log.debug(result);
 
-return result;   				   				   				   							
+return result;   							

@@ -3,13 +3,12 @@
 write=nobody
 execute=authenticated 
   **/ 
- 
  var id = request.parameters["id"];
 var platform = request.parameters["platform"];
 
 var update = request.parameters["update"];
-var pushTokens = null;
-var lifetime = request.parameters["lifetime"];
+var pushTokens = request.parameters["pushTokens"];
+var lifetime = null;
 var isProduction = request.parameters["isProduction"];
 
 var options = {
@@ -26,4 +25,4 @@ var messaging = require("messaging");
 var result = messaging.notification.group.save(id, platform, options);
 log.debug(result);
 
-return result;   				   							
+return result;   							

@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var channel = request.parameters["channel"];
 var type = "RunScript";
 var callBack = "messaging/realtime/callBackScript";

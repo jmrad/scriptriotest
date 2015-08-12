@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var id = request.parameters["id"];
 var platform = "test";
 

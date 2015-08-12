@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var channel = "/";
 var message = request.parameters["message"];
 var wrapMessage = request.parameters["wrapMessage"];

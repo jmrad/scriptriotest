@@ -3,7 +3,6 @@
 write=nobody
 execute=authenticated 
   **/ 
- 
  var channel = request.parameters["channel"];
 var type = "RunScript";
 var callBack = "messaging/realtime/callBackScript";
@@ -13,7 +12,6 @@ log.setLevel("DEBUG");
 
 var messaging = require("messaging");
 var result = messaging.subscribe(channel, type, callBack);
-//var result = messaging.subscribe(channel, type, callBack);
 log.debug(result);
 
-return result;   				   							
+return result;   				   							   							

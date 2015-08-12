@@ -4,14 +4,14 @@ write=nobody
 execute=authenticated 
   **/ 
  var channel = request.parameters["channel"];
-var type = "RunScript";
-var callBack = "messaging/realtime/callBackScript";
+var message = null;
+var wrapMessage = request.parameters["wrapMessage"];
 
 var log = require("log");
 log.setLevel("DEBUG");
 
 var messaging = require("messaging");
-var result = messaging.unsubscribe(channel, type, callBack);
+var result = messaging.publish(channel, message, wrapMessage);
 log.debug(result);
 
-return result;   				   							   							
+return result;   							

@@ -21,6 +21,6 @@ log.setLevel("DEBUG");
 
 var messaging = require("messaging");
 var result = messaging.notification.group.save(id, platform, options);
-log.debug(result);
+log.debug(JSON.stringify(result));
 
 return result;   							

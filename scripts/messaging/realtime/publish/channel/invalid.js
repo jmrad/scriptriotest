@@ -3,7 +3,6 @@
 write=nobody
 execute=authenticated 
   **/ 
- 
  var channel = "/";
 var message = request.parameters["message"];
 var wrapMessage = request.parameters["wrapMessage"];
@@ -13,6 +12,6 @@ log.setLevel("DEBUG");
 
 var messaging = require("messaging");
 var result = messaging.publish(channel, message, wrapMessage);
-log.debug(result);
+log.debug(JSON.stringify(result));
 
 return result;   							

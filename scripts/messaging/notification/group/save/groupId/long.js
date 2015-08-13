@@ -3,7 +3,6 @@
 write=nobody
 execute=authenticated 
   **/ 
- 
  var id = 2147483648;
 var platform = request.parameters["platform"];
 
@@ -24,6 +23,6 @@ log.setLevel("DEBUG");
 
 var messaging = require("messaging");
 var result = messaging.notification.group.save(id, platform, options);
-log.debug(result);
+log.debug(JSON.stringify(result));
 
-return result;    				   				   				   							
+return result;   							

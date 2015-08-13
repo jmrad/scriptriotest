@@ -3,8 +3,6 @@
 write=nobody
 execute=authenticated 
   **/ 
- 
- 
  var message = request.rawBody;
 
 var log = require("log");

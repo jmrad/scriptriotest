@@ -10,6 +10,6 @@ log.setLevel("DEBUG");
 
 var messaging = require("messaging");
 var result = messaging.channel.delete(id);
-log.debug(result);
+log.debug(JSON.stringify(result));
 
-return result;     				   							   				   				   							   							
+return result;   							

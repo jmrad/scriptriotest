@@ -12,4 +12,4 @@ var messaging = require("messaging");
 var result = messaging.notification.group.delete(id);
 log.debug(JSON.stringify(result));
 
-return result;   							
+return result;   				   							

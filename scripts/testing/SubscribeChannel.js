@@ -3,15 +3,15 @@
 write=nobody
 execute=authenticated 
   **/ 
- var channel = request.parameters["channel"];
+ var channel = "MyChannel";
 var type = "notificationsGroup";
-var callBack = "";
+var callBack = "MyGroup";
 
 var log = require("log");
 log.setLevel("DEBUG");
 
 var messaging = require("messaging");
-var result = messaging.unsubscribe(channel, type, callBack);
-log.debug(JSON.stringify(result));
+var result = messaging.subscribe(channel, type, callBack);
+log.debug(result);
 
-return result;   				   							
+return result;   				   				   				   							

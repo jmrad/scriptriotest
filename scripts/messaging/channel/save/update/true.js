@@ -4,7 +4,7 @@ write=nobody
 execute=authenticated 
   **/ 
  var id = request.parameters["id"];
-var update = true;
+var update = "true";
 var subscribeACL = request.parameters["subscribeACL"];
 var publishACL = request.parameters["publishACL"];
 
@@ -22,4 +22,4 @@ var messaging = require("messaging");
 var result = messaging.channel.save(options);
 log.debug(JSON.stringify(result));
 
-return result;   							
+return result;   				   							

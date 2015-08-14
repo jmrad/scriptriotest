@@ -3,14 +3,16 @@
 write=nobody
 execute=authenticated 
   **/ 
- var id = request.parameters["id"];
-var update = request.parameters["update"];
-var subscribeACL = request.parameters["subscribeACL"];
+ var id = "MyNotificationChannel";
+var update = "false";
+var subscribeACL = "authenticated";
+var publishACL = "authenticated";
 
 var options = {
   "id": id,
   "update": update,
-  "subscribeACL": subscribeACL
+  "subscribeACL": subscribeACL,
+  "publishACL": publishACL
 }
 
 var log = require("log");

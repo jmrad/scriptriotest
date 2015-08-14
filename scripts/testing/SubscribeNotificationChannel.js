@@ -3,13 +3,15 @@
 write=nobody
 execute=authenticated 
   **/ 
- var id = 2147483648;
+ var channel = "MyNotificationChannel";
+var type = "notificationsGroup";
+var callBack = "MyAndroidGroup";
 
 var log = require("log");
 log.setLevel("DEBUG");
 
 var messaging = require("messaging");
-var result = messaging.channel.delete(id);
+var result = messaging.subscribe(channel, type, callBack);
 log.debug(JSON.stringify(result));
 
-return result;   							
+return result;   				   				   							

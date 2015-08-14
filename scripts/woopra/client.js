@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var config = require("woopra/config");
 var http = require("http");
 

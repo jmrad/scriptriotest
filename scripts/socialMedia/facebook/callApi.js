@@ -4,6 +4,7 @@ write=nobody
 execute=authenticated 
   **/ 
  
+ 
  /* This is an example of posting a video to Facebook. */
 
 var fb = require("facebook");

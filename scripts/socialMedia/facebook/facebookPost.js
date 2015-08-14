@@ -4,6 +4,7 @@ write=nobody
 execute=authenticated 
   **/ 
  
+ 
  var currentDate = new Date();
 var formattedDate = currentDate.getFullYear()
   + "-" + atLeastTwoDigits(currentDate.getMonth() + 1)

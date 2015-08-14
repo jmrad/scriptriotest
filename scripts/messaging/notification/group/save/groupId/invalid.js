@@ -3,7 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
- var id = -10;
+ var id = "/";
 var platform = request.parameters["platform"];
 
 var update = request.parameters["update"];

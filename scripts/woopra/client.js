@@ -3,7 +3,6 @@
 write=nobody
 execute=authenticated 
   **/ 
- 
  var config = require("woopra/config");
 var http = require("http");
 
@@ -19,10 +18,11 @@ function WoopraClient(domain) {
 }
 
 /**
- * identfy the client if you need to know who is that client you can identify him before tracing.
+ * identify the client if you need to know who is that client you can identify him before tracing.
  * @method identify
  * @param {String} the email of the user
  * @param {object} optional parameters //{"cv_name":"John+Smith","cv_company":"elementn"} or empty object {}
+ * @return {Object} first call it return {"success":true} or {"success":false, "message":"error detail"}, next calls it return empty object
  */
 WoopraClient.prototype.identify = function(cv_email ,optionalParamsObj ) {
 
@@ -40,43 +40,44 @@ WoopraClient.prototype.identify = function(cv_email ,optionalParamsObj ) {
    for (var attrname in optionalParamsObj) { 
     	requestParams.params[attrname] = optionalParamsObj[attrname]; 
   }
-  console.log(JSON.stringify(requestParams));
    return this._callApi(requestParams); 
 };
 
 /**
  * track the event , call woopra API to register the event hit.
  * @method track
- * @param {String} the name of the event Example : scriptCall 
- *{"cv_name":"John+Smith","cv_email":"john@mail.com","ce_item":"Coffee+Machine","ce_category":"Electric+Appliances","ce_sku":"K5236532"}
- * @param {object} the hash of the session cookie in order to count all the calls in the same session can be ""
- * @param {object}  scriptr request
+ *@param {object} params: object containing the following attributes example :
+ *{"eventName":eventName,"cookieHash":cookieHash,"userID":request.user.id,"optionalParamsObj":   {"cv_name":"John+Smith","cv_email":"john@mail.com","ce_item":"Coffee+Machine","ce_category":"Electric+Appliances","ce_sku":"K5236532"}}
+ * content of this object is :
+ * eventName {String} :the name of the event Example : scriptCall
+ * optionalParamsObj {Object}:optional parameters {"cv_name":"John+Smith","cv_email":"john@mail.com","ce_item":"Coffee+Machine","ce_category":"Electric+Appliances","ce_sku":"K5236532"}
+ * cookieHash {object} the hash of the session cookie in order to count all the calls in the same session can be ""
+ * userID {String}  the user id 
+ * @return {Object} return {"success":true} or {"success":false, "message":"error detail"}
  */
-WoopraClient.prototype.track = function(eventName ,optionalParamsObj , cookieHash, request) {
+WoopraClient.prototype.track = function(params) {
     if(this.user == ""){
-      this.user=request.user.id;
-     console.log(this.identify(this.user,{}));
+      this.user=params.userID;
     }
-   if(cookieHash == ""){
-     cookieHash=this._generateCookie();
+   if(params.cookieHash == ""){
+       params.cookieHash =this._generateCookie();
    }
       var requestParams = {  
       "url": config.getWoopraHttpTrackingURL(),
       "params": {
         "host": this.host,
 		"response": "json",
-		"cookie": cookieHash,
+		"cookie": params.cookieHash,
 		"timeout":config.getTimeout(),
         "cv_email":this.user,
-		"event": eventName
+		"event": params.eventName
       },
       "method": "GET"
   };
   
-  for (var attrname in optionalParamsObj) { 
-    	requestParams.params[attrname] = optionalParamsObj[attrname]; 
+  for (var attrname in  params.optionalParamsObj) { 
+    	requestParams.params[attrname] =  params.optionalParamsObj[attrname]; 
   }
-   console.log(JSON.stringify(requestParams));
    return this._callApi(requestParams); 
 };
 
@@ -138,11 +139,10 @@ WoopraClient.prototype._parseResponse = function(response) {
 WoopraClient.prototype._parseBody = function(response) {
   
   var responseBodyStr = response.body;
-  console.log(responseBodyStr);
  
   if (response.headers["Content-Type"].indexOf("application/json") > -1 && responseBodyStr!="") {
     	return JSON.parse(responseBodyStr);
   	}
   
   return responseBodyStr;
-};   				   				   				   				   							
+};   				   				   				   				   				   				   							

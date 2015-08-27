@@ -1,9 +1,4 @@
-/** Script ACLs do not delete 
- read=nobody 
-write=nobody
-execute=authenticated 
-  **/ 
- var config = require("googleanalytics/config");
+var config = require("googleanalytics/config");
 var http = require("http");
 
 /**

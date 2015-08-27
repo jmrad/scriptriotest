@@ -1,9 +1,4 @@
-/** Script ACLs do not delete 
- read=nobody 
-write=nobody
-execute=authenticated 
-  **/ 
- // woopra track url 
+// woopra track url 
 var woopra_http_tracking_url = "http://www.woopra.com/track/ce";
 // woopra identify url 
 var woopra_http_identify_url = "http://www.woopra.com/track/identify";

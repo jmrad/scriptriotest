@@ -1,4 +1,10 @@
-var config = require("googleanalytics/config");
+/** Script ACLs do not delete 
+ read=nobody 
+write=nobody
+execute=authenticated 
+  **/ 
+ 
+ var config = require("googleanalytics/config");
 var http = require("http");
 
 /**
@@ -14,31 +20,23 @@ function GoogleAnalyticsClient(tid) {
 /**
  * track the event , call google analytics API to register the event hit.
  * @method track
- * @param {object} params: object containing the following attributes :
- * eventCategory {String} the category of the event Example : video , event, button click...
- * eventAction {String} the action of the event Example: play, rewind, click ... 
- * optionalParamsObj {object} optional parameters  Event label and Event value. Example : {"el":"holiday" // Event label ,"ev":"300"// Event value. ..... } or {} .
- * userID {String}  the user id 
- * cid {String}  client id or "" 
- * debug {boolean}  debug mode true for debug and false for no debug
- * @return in case of degug is true "  "hitParsingResult": [ {"valid": true,"parserMessage": [ ],"hit": "POST /debug/collect HTTP/1.1"} ]}". in case of debug false empty string.
- *Example:{"eventCategory":"scriptCall","eventAction":"action","optionalParamsObj":{},"userID":request.user.id,"cid":"35009a79-1a05-49d7-b876-2b884d0f825b","debug":true}
+ * @param {String} the category of the event Example : video , event, button click...
+ * @param {String} the action of the event Example: play, rewind, click ... 
+ * @param {object} optional parameters  Event label and Event value. Example : {"el":"holiday" // Event label ,"ev":"300"// Event value. ..... } or {} .
+ * @param {object} the scriptr request 
+ * @param {object}  client id or "" 
+  * @param {boolean}  debug mode true for debug and false for no debug
  */
-
-
-GoogleAnalyticsClient.prototype.track = function(params) {
+GoogleAnalyticsClient.prototype.track = function(eventCategory, eventAction ,optionalParamsObj , request, cid, debug) {
   	this.googleUrl="";
-  if(params.debug==true){
+  if(debug==true){
     this.googleUrl=config.getGoogleAnalyticsDebugUrl();
   }else{
   	this.googleUrl=config.getGoogleAnalyticsUrl();  
   }
   
-  var cid;
-  if(params.cid == ""){
-     cid=params.userID;
-   }else{
-     cid=params.cid;
+  if(cid == ""){
+     cid=request.user.id;
    }
   var requestParams = {  
       "url": this.googleUrl,
@@ -47,14 +45,15 @@ GoogleAnalyticsClient.prototype.track = function(params) {
 		"tid": this.trackingId,
 		"cid": cid,
 		"t": "event",
-        "ec": params.eventCategory,
-        "ea": params.eventAction
+        "ec": eventCategory,
+        "ea": eventAction
       },
       "method": "POST"
   };
-  for (var attrname in params.optionalParamsObj) { 
-    	requestParams.params[attrname] = params.optionalParamsObj[attrname]; 
+  for (var attrname in optionalParamsObj) { 
+    	requestParams.params[attrname] = optionalParamsObj[attrname]; 
   }
+   console.log(JSON.stringify(requestParams));
    return this._callApi(requestParams); 
 };
 
@@ -103,4 +102,4 @@ GoogleAnalyticsClient.prototype._parseBody = function(response) {
   	}
   
   return responseBodyStr;
-};   				   				   				   				   				   				   				   				   							
+};   				   				   				   				   				   				   							

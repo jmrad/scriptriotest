@@ -3,4 +3,5 @@
 write=nobody
 execute=authenticated 
   **/ 
+  var x=1;
  return configuration.crossDomainHeaders;		

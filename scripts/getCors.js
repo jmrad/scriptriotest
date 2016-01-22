@@ -3,4 +3,4 @@
 write=nobody
 execute=authenticated 
   **/ 
- return configuration.crossDomainHeaders			
+ return configuration.crossDomainHeaders;		

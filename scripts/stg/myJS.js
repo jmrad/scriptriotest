@@ -7,7 +7,7 @@ execute=authenticated
 var http = require("http");
 
 /**
- * a simple wrapper on woopra's APIs
+ * a simple2 wrapper on woopra's APIs
  * @class GoogleAnalyticsClient
  * @constructor GoogleAnalyticsClient
  * @param {String} domain : (mendatory) the domain name that we need to track  

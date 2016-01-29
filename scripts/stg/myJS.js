@@ -12,6 +12,13 @@ var http = require("http");
  * @constructor GoogleAnalyticsClient
  * @param {String} domain : (mendatory) the domain name that we need to track  
  */
+
+/**
+ * a simple wrapper on woopra's APIs
+ * @class GoogleAnalyticsClient
+ * @constructor GoogleAnalyticsClient
+ * @param {String} domain : (mendatory) the domain name that we need to track  
+ */
 function WoopraClient(domain) {
 	this.host=domain;
   	this.user="";
@@ -44,6 +51,13 @@ WoopraClient.prototype.identify = function(cv_email ,optionalParamsObj ) {
 };
 
 /**
+ * a simple wrapper on woopra's APIs
+ * @class GoogleAnalyticsClient
+ * @constructor GoogleAnalyticsClient
+ * @param {String} domain : (mendatory) the domain name that we need to track  
+ */
+
+/**
  * track the event , call woopra API to register the event hit.
  * @method track
  *@param {object} params: object containing the following attributes example :
@@ -74,7 +88,7 @@ WoopraClient.prototype.track = function(params) {
       },
       "method": "GET"
   };
-  
+  test
   for (var attrname in  params.optionalParamsObj) { 
     	requestParams.params[attrname] =  params.optionalParamsObj[attrname]; 
   }

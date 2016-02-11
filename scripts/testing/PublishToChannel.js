@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var channel = "MyChannel";
 var message = "This is a testing message sent to MyChannel to which callBackScript is subscribed.";
 var wrapMessage = "true";

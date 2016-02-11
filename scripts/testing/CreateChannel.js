@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var id = "MyChannel";
 var update = "false";
 var subscribeACL = "authenticated";

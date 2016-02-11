@@ -3,6 +3,7 @@
 write=nobody
 execute=anonymous 
   **/ 
+ 
  var id = "MyAndroidGroup";
 var platform = "android";
 

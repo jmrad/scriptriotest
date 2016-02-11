@@ -5,6 +5,7 @@ execute=authenticated
   **/ 
  
  
+ 
  var count = 0;
 if(!storage.local.counter)
     storage.local.counter = count;

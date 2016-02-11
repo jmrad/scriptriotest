@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var channel = "MyChannel";
 var type = "notificationsGroup";
 var callBack = "MyGroup";

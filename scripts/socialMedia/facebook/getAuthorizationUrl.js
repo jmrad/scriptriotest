@@ -5,6 +5,7 @@ execute=authenticated
   **/ 
  
  
+ 
  var fb = require("facebook");
 
 var callbackUrl = "http://www.scriptr.io/";

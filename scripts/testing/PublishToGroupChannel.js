@@ -3,6 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
+ 
  var channel = "MyNotificationChannel";
 var message = "Maher is always high";
 var wrapMessage = "true";

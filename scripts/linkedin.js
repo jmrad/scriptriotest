@@ -3,7 +3,7 @@
 write=nobody
 execute=authenticated 
   **/ 
- var clientId = "pn18vv4vcazj";
+ var clientId = "pn18vv4vcazja";
 var clientSecret = "nmGRDm0UVMRJBAhj";
 var callbackUrl = "http://www.batata.com";
 var code = request.parameters['code'];

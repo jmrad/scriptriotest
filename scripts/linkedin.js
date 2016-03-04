@@ -14,7 +14,7 @@ if(code == null){
      result = apsdb.social.linkedin.getRequestToken(clientId, clientSecret, callbackUrl);
      return result;
 }else{
-    //caro this code will run when google does the callback with the code parameter
+    //carotest this code will run when google does the callback with the code parameter
      
      result = apsdb.social.linkedin.getAccessToken(clientId, clientSecret,requestToken,requestTokenSecret, code);
     //save the access token of the currently logged in user
@@ -27,3 +27,4 @@ if(code == null){
     return result;
 }
 return {"status" : "success"};			
+			

@@ -1,0 +1,3 @@
+var devices = require("device");
+
+return devices.generateToken("AB825CE1520F");

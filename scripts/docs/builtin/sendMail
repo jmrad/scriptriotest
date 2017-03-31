@@ -1,0 +1,10 @@
+var time = new Date();
+var mailBody = "Hello,<br>An intrusion was detected at " + time + "<br>";
+mailBody += "<a href='https://api.scriptrapps.io/discard?id=" + request.id + "'>Click here to discard the alert</a>";
+var emailConfig = {
+  "to": "joe.developer@scriptr.io",
+  "fromName": "Joe",
+  "subject": "Intrusion alert",
+  "body": mailBody
+};
+return sendMail("julien.mrad@elementn.com", "emailConfig.fromName", "emailConfig.subject", "emailConfig.body");

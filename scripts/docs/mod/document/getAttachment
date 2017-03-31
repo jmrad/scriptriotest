@@ -1,0 +1,11 @@
+var documents = require("document");
+
+var getDocument = documents.get("myCountryDocumentKey");
+
+if(getDocument.metadata.status == "success"){
+    // Get the name of the file to be retrieved
+    var filename = getDocument.result.attachments;
+
+    // Retrieve the attachment
+    return documents.getAttachment("myCountryDocumentKey", filename, {"fieldName": "attachments", "versionNumber": "1"});
+}

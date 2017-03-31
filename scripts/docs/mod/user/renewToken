@@ -1,0 +1,3 @@
+var users = require("user");
+
+return users.renewToken("john.doe@example.com", "TDIyODI2REM5MTpqb2huLmRvZUBleGFtcGxlLmNvbTo5OUQ5OTZDRjkzOTJGMEQ5NURCRTU3MUEyRTZGODE5OA==");

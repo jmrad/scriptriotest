@@ -1,0 +1,19 @@
+var documents = require("document");
+
+// Define the document content to be updated
+var fields = {
+    // specify the document key
+    "key": "myCountryDocumentKey",
+    // Update the states field by appending and deleting some values
+    "states": {"append":["New Mexico", "Washington"], "delete":["Utah"]},
+    // delete the history field by setting it to an empty string
+    "history": "",
+    // add a new field to the document called connected of type string
+    "connected": "true",
+    // specify the type of the newly added field
+    "meta.types": {
+        "connected": "string"
+    }
+};
+
+return documents.update(fields);

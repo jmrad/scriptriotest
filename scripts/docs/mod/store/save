@@ -1,0 +1,17 @@
+var stores = require("store");
+
+// Create the "myStore" store with the following ACLs
+stores.save("myStore", {
+    "saveDocumentACL" : "deviceA",
+    "deleteDocumentACL" : ["deviceA", "group:firstFloor"],
+    "queryACL" : "deviceB",
+    "getAttachmentACL" : "deviceB"
+});
+
+// Updates the deleteDocumentACL of the store "myStore". Note that the other ACLs will remain untouched if you don't pass them during an update.
+return stores.save("myStore", {
+    "deleteDocumentACL" : {
+        "append" : "deviceB",
+        "delete" : ["deviceA", "group:firstFloor"]
+    }
+});

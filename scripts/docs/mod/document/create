@@ -1,0 +1,19 @@
+// Import the document module
+var documents = require("document");
+
+// Retrieve the country flag image file from the request
+var certificate = request.files["certificate"];
+
+// Define the document content
+var fields = {
+	"key" : "scVehicle",
+	"fuelPercentage" : "90.0",
+	"currentLocation" : "33.8587,35.5999",
+	"carType" : "Range Rover",
+	"registrationCertificate" : certificate,
+	"vehicleId" : "123",
+	"meta.schema" : "vehicleSchema"
+};
+
+// Persist the document scVehicle
+return documents.create(fields);

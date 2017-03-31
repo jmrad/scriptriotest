@@ -1,0 +1,1 @@
+return xmlToJson("<testing attr1='asdf'><subent>1234</subent></testing>")

@@ -1,0 +1,6 @@
+var pubsub = require("pubsub");
+var options = {
+  "subscribeACL": "anonymous",
+  "publishACL": "authenticated"
+}
+return pubsub.updateChannel("myChannel", options);

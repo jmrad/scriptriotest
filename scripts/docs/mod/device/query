@@ -1,0 +1,4 @@
+var documents = require("device");
+
+// Look for the device where the name field is equal to deviceA
+return documents.query({"query":'name="deviceA"', "fields":"*", "sort":"name<string:ASC>, lastOnline<date:DESC>"});

@@ -1,0 +1,2 @@
+var group = require("group");
+return group.create("myGroup");

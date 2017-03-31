@@ -1,0 +1,2 @@
+var pubsub = require("pubsub");
+return pubsub.unsubscribe("myChannel", "scriptA");

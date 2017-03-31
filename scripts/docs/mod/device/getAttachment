@@ -1,0 +1,3 @@
+var devices = require("device");
+
+return devices.getAttachment("AB825CE1520F", "Configuration.txt", "reports");

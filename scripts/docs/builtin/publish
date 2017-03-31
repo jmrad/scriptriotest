@@ -1,0 +1,1 @@
+return publish("myChannel", "Hello Device!");

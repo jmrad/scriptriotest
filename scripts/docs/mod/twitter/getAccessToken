@@ -1,0 +1,18 @@
+var twitter = require("twitter");
+var callbackUrl = "http://test.scriptr.io";
+
+//tokens are optional params
+var consumerKey = request.parameters["consumerKey"];
+var consumerSecret = request.parameters["consumerSecret"];
+
+var credentials = {
+	"consumerKey": "pnB82bHGXC0GPBOvGPGDwvxkc",
+	"consumerSecret": "ESUrwOXn8actHJtymKn5cBd5P9cu7fmTrAk5Yq4dABxWED5Dpj"
+};
+
+var requestToken = "K9q2EgAAAAAAdpyhAAABWxCHbBs";
+var requestSecret = "NYdsaZIlgAnfBgCSAiJ5OXjfwio7rXIL";
+
+var oAuthVerifier = "NQ2r3sPfu3xeCCiFH7klWjORfkTdcRj9";
+
+return twitter.getAccessToken(requestToken, requestSecret, oAuthVerifier, credentials); 				   				   				   				   							

@@ -1,0 +1,9 @@
+if (!storage.local.pushScriptCounter) storage.local.pushScriptCounter = 0;
+storage.local.pushScriptCounter = storage.local.pushScriptCounter + 1;
+console.log(storage.local.pushScriptCounter);
+
+return require("mobile-push").push(
+  	["dsSZd7isfLU:APA91bFKic6VQ0vHkSI_XfsfoXvBR9CLiftFjGaa6WCgaBBNWVouotC-olcUFomSYSRhCG2ZV_qFMO066O9YDbeV8UAh2cHWs3NGb7tCUz4-HlbXHNF8T62abSMx5xjxEYANmRewZM0G"], 
+  	'{"Content":"Notification from the push script (' + storage.local.pushScriptCounter + ')."}', 
+  	"android", 
+  	false);

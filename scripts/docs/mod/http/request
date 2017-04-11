@@ -13,7 +13,7 @@ var requestObject = {
 // send the request by invoking the request function
 // of the http module and store the returned response object
 var response = http.request(requestObject);
-
+return response;
 // get the body of the response as a string
 var responseBodyStr = response.body;
 // check the status of the response

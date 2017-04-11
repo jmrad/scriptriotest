@@ -1,0 +1,1 @@
+return require("mobile-push").pushToGroup("wsNews", "Notification from the pushToGroup script.")

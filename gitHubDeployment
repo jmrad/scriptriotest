@@ -1,4 +1,5 @@
 var log = require("log");
+log.setLevel("INFO"); //levels are ERROR | WARN | INFO | DEBUG | OFF
 log.error("logging rawBody...");
 log.error(request.rawBody);
 log.error("rawBody logged.");

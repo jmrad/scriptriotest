@@ -1,0 +1,2 @@
+var mobpush = require("mobile-push");
+return mobpush.addToGroup("wsNews", ["dsSZd7isfLU:APA91bFKic6VQ0vHkSI_XfsfoXvBR9CLiftFjGaa6WCgaBBNWVouotC-olcUFomSYSRhCG2ZV_qFMO066O9YDbeV8UAh2cHWs3NGb7tCUz4-HlbXHNF8T62abSMx5xjxEYANmRewZM0G"]);

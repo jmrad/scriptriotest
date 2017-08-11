@@ -1,0 +1,2 @@
+var mobpush = require("mobile-push");
+return mobpush.removeFromGroup("fdsa", ["fafafafafafafa"])

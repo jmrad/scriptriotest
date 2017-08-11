@@ -1,0 +1,2 @@
+var devices = require("device");
+return devices.get("AB825CE1520F", true)

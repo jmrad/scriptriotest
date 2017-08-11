@@ -1,0 +1,16 @@
+var users = require("user");
+
+var params = {
+    "id" : "john.doe1@example.com",
+    "password" : "1a2afef9b19c975b429a92ec22e873c8",
+    "name" : "John Doe",
+    "description" : "Security services employee",
+    "lastOnline" : new Date(),
+    //"groups" : ["groupA", "groupB"],
+    "meta.types" : {
+        "description" : "text",
+        "lastOnline" : "date"
+    }
+};
+
+return users.create(params);

@@ -1,0 +1,18 @@
+var users = require("user");
+
+var idCard = request.files["idCard"][0];
+
+var params = {
+    "id" : "john.doe@example.com",
+    "password" : "1a2afef9b19c975b429a92ec22e873c8",
+    "name" : "John Doe",
+    "description" : "Security services employee",
+    "lastOnline" : new Date(),
+    "card" : idCard,
+    "meta.types" : {
+        "description" : "text",
+        "lastOnline" : "date"
+    }
+};
+
+return users.save(params);

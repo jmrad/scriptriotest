@@ -1,0 +1,6 @@
+var users = require("user");
+
+// Look for users in "groupA"
+return users.query({"query":'groups in ["groupA"]', "fields":"*", "sort":"name<string:ASC>, lastOnline<date:DESC>"});
+// OR
+return users.query({"query":'groups = "groupA"', "fields":"*", "sort":"name<string:ASC>, lastOnline<date:DESC>"});

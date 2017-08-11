@@ -1,2 +1,0 @@
-var devices = require("device");
-return devices.delete("AB825CE1520F");

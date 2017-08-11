@@ -1,3 +1,0 @@
-var documents = require("document");
-
-return documents.delete("scVehicle");

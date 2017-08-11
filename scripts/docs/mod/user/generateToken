@@ -1,3 +1,0 @@
-var users = require("user");
-
-return users.generateToken("john.doe@example.com");

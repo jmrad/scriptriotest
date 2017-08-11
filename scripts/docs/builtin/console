@@ -1,3 +1,0 @@
-console.setLevel("INFO"); //levels are ERROR | WARN | INFO | DEBUG | OFF
- 
-return console.error("This is the error message of the script");

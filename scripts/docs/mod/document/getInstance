@@ -1,4 +1,0 @@
-var defaultStoreDocuments = require("document");
-var myStoreDocuments = defaultStoreDocuments.getInstance("myStore");
-
-return myStoreDocuments.get("myDocument");

@@ -1,2 +1,0 @@
-var schema = require("schema");
-return schema.list();

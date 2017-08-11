@@ -1,1 +1,0 @@
-return jsonToXml({ "prop" : "val" })

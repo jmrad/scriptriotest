@@ -1,3 +1,0 @@
-var stores = require("store");
-
-return stores.delete("myStore")

@@ -1,3 +1,0 @@
-var users = require("user");
-
-return users.revokeTokens("john.doe@example.com");

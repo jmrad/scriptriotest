@@ -1,2 +1,0 @@
-var mobpush = require("mobile-push");
-return mobpush.deleteGroup("fdsa");

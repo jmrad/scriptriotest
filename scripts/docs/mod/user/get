@@ -1,3 +1,0 @@
-var users = require("user");
-
-return users.get("john.doe1@example.com");

@@ -1,3 +1,0 @@
-var users = require("user");
-
-return users.getAttachment("john.doe@example.com", "Agile Tour Beirut 2016 Program.pdf", "card");

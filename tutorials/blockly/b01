@@ -1,0 +1,6 @@
+var nestTemperature;
+
+
+nestTemperature = (request.parameters)["temperature"];
+if (nestTemperature > 100) {
+  return tweet ('This is a hot day!')}

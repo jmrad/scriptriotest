@@ -1,3 +1,0 @@
-var users = require("user");
-
-return users.delete("john.doe@example.com");

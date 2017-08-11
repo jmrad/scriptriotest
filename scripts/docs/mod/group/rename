@@ -1,2 +1,0 @@
-var group = require("group");
-return group.rename("myGroup", "hisGroup");

@@ -1,0 +1,63 @@
+ var scriptName='script_1';
+ var stores = require("store");
+ var pubsub = require("pubsub");
+ var devices = require("device");
+ var util = require("./util");
+ function run(stopOnError, errorMessages){ 
+ var parameters="";
+ var response=""; 
+parameters={"groupName":"admin"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "admin");
+parameters={"groupName":"hook-write"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "hook-write");
+parameters={"groupName":"script-execute"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "script-execute");
+parameters={"groupName":"script-read"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "script-read");
+parameters={"groupName":"script-write"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "script-write");
+ response =  stores.create("myStore");
+util.handleResponse(response, errorMessages, stopOnError, "stores.save", scriptName, "myStore");
+util.callApi("SaveConfiguration", {"apsdb.defaultResponseType":"JSON","apsdb.defaultRepositoryName":"scriptriotest","apsdb.defaultRepositoryOwner":"jmrad","apsdb.defaultRepositoryBranch":"master","apsdb.defaultRepositoryPath":"scripts","apsdb.defaultRepositoryAccessToken":"d2058f0aa30f1c97c99e680e3940aec26c7ec082","apsdb.defaultReadACL":"scriptr","apsdb.disableSchemalessDocs":"true","apsdb.optionalBindReferrer":"false","apsdb.defaultTokenExpires":"1800","apsdb.maximumTokenExpires":"86400","apsdb.defaultTokenLifeTime":"7200","apsdb.maximumTokenLifeTime":"604800","apsdb.allowForce200ResponseStatus":"true","apsdb.useDeprecatedSocialApis":"false","apsdb.accessControlAllowOrigin":"http://julesthegreat.scriptrapps.io,https://julesthegreat.scriptrapps.io;www.google.com,https://www.scriptr.io","apsdb.facebookConsumerKey":"34172668589571812343211234","apsdb.facebookConsumerSecret":"62d55f6f76433f42c644ef2e9caf91bf1234","apsdb.facebookAccessToken":"CAAE2zHG5HCYBAPeBjg2K0mW69tk9pKKQ6Kzvdre10ArdAJnxU2ya5hORle3Vlmp89rn2NjbyOPQ8l7UE7974uTO69s09ZCr7CCi9TCylbLO2ZCh75HGWBExVQouRcQRxuyZBsQWLCxucKqBZBnW1EmSaNLqSJWgVkU1T1p4PZCTvuoXFyWOyQuEIWJnbLIgAnzxXHwb4U2gZDZD","apsdb.twitterConsumerKey":"pnB82bHGXC0GPBOvGPGDwvxkc","apsdb.twitterConsumerSecret":"ESUrwOXn8actHJtymKn5cBd5P9cu7fmTrAk5Yq4dABxWED5Dpj","apsdb.twitterAccessToken":"465421014-ECXEvzzMKsth0OUPh7xToaominE7gJL9pgZq0F7Z","apsdb.twitterAccessTokenSecret":"5UKGifHKvY0IiZLfg7HcmADCxs5DQy5lvu5aHCbAS0kVN","apsdb.P3P":""}, null, errorMessages, stopOnError, scriptName, "");
+util.callApi("SaveConfiguration", {"apsdb.DefaultStore.deleteDocumentACL":"nobody","apsdb.DefaultStore.getFileACL":"nobody","apsdb.DefaultStore.saveDocumentACL":"deviceA;deviceB;userB","apsdb.DefaultStore.queryACL":"authenticated"}, null, errorMessages, stopOnError, scriptName, "DefaultStore");
+util.callApi("SaveConfiguration", {"apsdb.myStore.getFileACL":"nobody","apsdb.myStore.saveDocumentACL":"nobody","apsdb.myStore.queryACL":"nobody","apsdb.myStore.deleteDocumentACL":"nobody"}, null, errorMessages, stopOnError, scriptName, "myStore");
+var channel_UI_channel_options={  "subscribeACL": "anonymous", "publishACL": "anonymous" }
+response =  pubsub.createChannel("UI_channel",channel_UI_channel_options);
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.createChannel", scriptName, "UI_channel");
+var channel_scriptrUIchannel_options={  "subscribeACL": "anonymous", "publishACL": "anonymous" }
+response =  pubsub.createChannel("scriptrUIchannel",channel_scriptrUIchannel_options);
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.createChannel", scriptName, "scriptrUIchannel");
+var channel_radioRockLA_twitter_feed_options={  "subscribeACL": "authenticated", "publishACL": "authenticated" }
+response =  pubsub.createChannel("radioRockLA_twitter_feed",channel_radioRockLA_twitter_feed_options);
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.createChannel", scriptName, "radioRockLA_twitter_feed");
+response =  pubsub.subscribe("radioRockLA_twitter_feed","HelloDevice","SCRIPT");
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.subscribe", scriptName, "radioRockLA_twitter_feed_HelloDevice");
+response =  pubsub.subscribe("radioRockLA_twitter_feed","fdsa","push_group");
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.subscribe", scriptName, "radioRockLA_twitter_feed_fdsa");
+var channel_la_weather_info_options={  "subscribeACL": "anonymous", "publishACL": "authenticated" }
+response =  pubsub.createChannel("la_weather_info",channel_la_weather_info_options);
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.createChannel", scriptName, "la_weather_info");
+var channel_la_traffic_info_options={  "subscribeACL": "authenticated", "publishACL": "authenticated" }
+response =  pubsub.createChannel("la_traffic_info",channel_la_traffic_info_options);
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.createChannel", scriptName, "la_traffic_info");
+util.callApi("SaveUser", {"password":"wiss","login":"wiss","name":"wiss"}, null, errorMessages, stopOnError, scriptName, "wiss");
+util.callApi("SaveUser", {"password":"userC","login":"userC","name":"testing schema permissions c","email":"jul@jul.julien"}, null, errorMessages, stopOnError, scriptName, "userC");
+util.callApi("SaveUser", {"password":"userB","groups":"admin","login":"userB","name":"testing schema permissions b","email":"jul@jul.jul"}, null, errorMessages, stopOnError, scriptName, "userB");
+util.callApi("SaveUser", {"password":"userA","login":"userA","name":"testing schema permissions a","email":"julien@julien.jul"}, null, errorMessages, stopOnError, scriptName, "userA");
+response = devices.save({"password":"deviceB","name":"deviceB","id":"deviceB"});
+util.handleResponse(response, errorMessages, stopOnError, "devices.save", scriptName, "deviceB");
+response = devices.generateToken("deviceB");
+util.handleResponse(response, errorMessages, stopOnError, "devices.generateToken", scriptName, "deviceB");
+response = devices.save({"password":"deviceA","name":"deviceA","id":"deviceA"});
+util.handleResponse(response, errorMessages, stopOnError, "devices.save", scriptName, "deviceA");
+response = devices.generateToken("deviceA");
+util.handleResponse(response, errorMessages, stopOnError, "devices.generateToken", scriptName, "deviceA");
+response = devices.save({"password":"fedemo","name":"fedemo","id":"fedemo"});
+util.handleResponse(response, errorMessages, stopOnError, "devices.save", scriptName, "fedemo");
+response = devices.generateToken("fedemo");
+util.handleResponse(response, errorMessages, stopOnError, "devices.generateToken", scriptName, "fedemo");
+response = devices.save({"password":"caro@picky","description":"amazing caro","name":"caro@picky","id":"caro@picky"});
+util.handleResponse(response, errorMessages, stopOnError, "devices.save", scriptName, "caro@picky");
+response = devices.generateToken("caro@picky");
+util.handleResponse(response, errorMessages, stopOnError, "devices.generateToken", scriptName, "caro@picky");
+ }

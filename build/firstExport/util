@@ -1,0 +1,17 @@
+ var scriptName='util';
+function handleResponse( response, errorMessages, stopOnError, action, scriptName, id ){
+		if (response.metadata.status == "failure") {
+			if(response.metadata.errorDetail && response.metadata.errorDetail.slice(-1)!="."){ 
+		   		 response.metadata.errorDetail+="."; 
+			} 
+			var errorMessage = scriptName + " threw an exception at " + action + " ["+id+"]. " + response.metadata.errorCode +": "+ response.metadata.errorDetail; 
+			errorMessages.push(errorMessage);
+			if (stopOnError=="true" || stopOnError==true) {
+	        	throw(errorMessage);
+	      	}
+	    }
+}
+function callApi( action, parameters, credentials ,errorMessages, stopOnError, scriptName, id ){
+	var resp=apsdb.callApi(action, parameters, null);
+	handleResponse(resp, errorMessages, stopOnError, action, scriptName, id);
+	return resp;}

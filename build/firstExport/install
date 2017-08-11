@@ -1,0 +1,52 @@
+ var scriptName='install';
+ var errorArray=new Array(); 
+ var stopOnError=request.parameters.stopOnError;
+  var wipeAccount=request.parameters.wipeAccount;
+ var wipe = require('./wipe');
+ if( !request.parameters.stopOnError ){
+	 stopOnError=false;
+ }
+ else 
+ { 
+ 	 if( stopOnError != "true" && stopOnError!="false" ){
+	 var error = {"metadata":{"requestId": request.id,
+		"status": "failure",
+		"errorCode": "INVALID_PARAMETER_VALUE",
+		"errorDetail": "Parameter [stopOnError] can either be 'true' or 'false'.",
+		"statusCode": "400"}};
+ 	 return error; 
+} } 
+
+ if( !request.parameters.wipeAccount ){
+	 wipeAccount=false;
+ }
+ else 
+ { 
+ 	 if( wipeAccount != "true" && wipeAccount!="false" ){
+	 var error = {"metadata":{"requestId": request.id,
+		"status": "failure",
+		"errorCode": "INVALID_PARAMETER_VALUE",
+		"errorDetail": "Parameter [wipeAccount] can either be 'true' or 'false'.",
+		"statusCode": "400"}};
+ 	 return error; 
+} } 
+
+ if( wipeAccount=='true' || wipeAccount == true ){
+ wipe.wipeAccount(errorArray, stopOnError);
+ }
+ else 
+ { 
+ if( request.parameters.wipeAccount && wipeAccount != "true" && wipeAccount!="false" ){
+ var error = {"metadata":{"requestId": request.id,
+		"status": "failure",
+		"errorCode": "INVALID_PARAMETER_VALUE",
+		"errorDetail": "Parameter [wipeAccount] can either be 'true' or 'false'.",
+		"statusCode": "400"}};
+ return error; 
+} } 
+ var script_1 = require("./script_1");
+ script_1.run(stopOnError, errorArray); 
+  if(errorArray.length==0){
+	  return "Your account settings are imported successfully.";
+	}
+ return errorArray;

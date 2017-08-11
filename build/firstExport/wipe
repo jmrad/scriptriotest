@@ -1,0 +1,71 @@
+ var scriptName='wipe';
+ var util = require("./util");
+  function wipeAccount(errorMessages, stopOnError){
+	var i = 0;
+	var listStores = util.callApi("ListStores", {}, null, errorMessages, stopOnError, scriptName, "");
+	for (i = 0; i < listStores.result.stores.length; i++) {
+	    if (listStores.result.stores[i].name != "DefaultStore") {
+	        var deleteStore = util.callApi("DeleteStore", {"apsdb.store": listStores.result.stores[i].name}, null, errorMessages, stopOnError, scriptName, listStores.result.stores[i].name);
+	    }
+	}
+	var listGroups = util.callApi("ListGroups", {}, null, errorMessages, stopOnError, scriptName, "");
+	for (i = 0; i < listGroups.result.groups.length; i++) {
+	    var deleteGroup = util.callApi("DeleteGroup", {"groupName": listGroups.result.groups[i].name}, null, null, errorMessages, stopOnError, scriptName, listGroups.result.groups[i].name);
+	}
+	var listUsers = util.callApi("ListUsers", {}, null, errorMessages, stopOnError, scriptName, "");
+	for (i = 0; i < listUsers.result.users.length; i++) {
+ 	   var deleteUser = util.callApi("DeleteUser", {"login": listUsers.result.users[i].login}, null, null, errorMessages, stopOnError, scriptName, listUsers.result.users[i].login);
+	}
+	var listDevices = util.callApi("ListDevices", {}, null, errorMessages, stopOnError, scriptName,"");
+	for (i = 0; i < listDevices.result.devices.length; i++) {
+ 	   if(listDevices.result.devices[i].id != "scriptr"){
+			var deleteDevice = util.callApi("DeleteDevice", {"id": listDevices.result.devices[i].id}, null, null, errorMessages, stopOnError, scriptName, listDevices.result.devices[i].id);
+		}	}
+	var listChannels = util.callApi("ListChannels", {}, null, errorMessages, stopOnError, scriptName, "");
+	for (i = 0; i < listChannels.result.channels.length; i++) {
+  	  var deleteChannel = util.callApi("DeleteChannel", {"name": listChannels.result.channels[i].name}, null, null, errorMessages, stopOnError, scriptName, listChannels.result.channels[i].name);
+	}
+	//Delete all scheduling documents in DefaultStore
+	var documents = require("document");
+	var store = documents.getInstance("DefaultStore");
+	var listDocuments = store.query({"query" : "key is not null", "fields" : "*"});
+	for(i=0; i<listDocuments.result.documents.length; i++)
+	    store.delete(listDocuments.result.documents[i].key);
+	//Delete all documents in SystemStore
+	store = documents.getInstance("SystemStore");
+	listDocuments = store.query({"query" : "key is not null", "fields" : "*"});
+	for(i=0; i<listDocuments.result.documents.length; i++)
+	    store.delete(listDocuments.result.documents[i].key);
+//Delete local storage in SystemStore.
+	for (var l in storage.local) {
+	    	delete storage.local[l];
+	}
+//Delete global storage in SystemStore.
+	for (var g in storage.global) {
+ 	delete storage.global[g];
+	}
+	var saveConfiguration = util.callApi("SaveConfiguration", {
+   	 "apsdb.createSchemaACL": "",
+  	 	 "apsdb.createScriptACL": "",
+   	 "apsdb.sendEmailACL": "",
+		 "apsdb.listScriptsACL": "",
+  	     "apsdb.getScriptACL": "",
+  	     "apsdb.defaultScriptExecutionACL": "scriptr",
+   	 "apsdb.storageStore": "",
+    	 "apsdb.defaultNotificationStore": "",
+  	     "apsdb.defaultResponseType": "",
+    	 "apsdb.disableSchemalessDocs": "false",
+    	 "apsdb.optionalBindReferrer": "false",
+   	 "apsdb.allowForce200ResponseStatus": "true",
+    	 "apsdb.defaultTokenExpires": "1800",
+   	 "apsdb.maximumTokenExpires": "86400",
+  	     "apsdb.defaultTokenLifeTime": "7200",
+   	 "apsdb.maximumTokenLifeTime": "604800",
+   	 "apsdb.defaultRepositoryName": "",
+   	 "apsdb.defaultRepositoryOwner": "",
+   	 "apsdb.defaultRepositoryAccessToken": "",
+   	 "apsdb.defaultRepositoryBranch": "",
+  	     "apsdb.defaultRepositoryPath": "",
+  	     "apsdb.backgroundJobStore": "",
+   	 "apsdb.gitPurge": ""	   }, null, null, errorMessages, stopOnError, scriptName, "");
+}

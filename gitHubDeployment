@@ -1,5 +1,7 @@
 var log = require("log");
-log.info(request.rawBody);
+log.error("logging rawBody...");
+log.error(request.rawBody);
+log.error("rawBody logged.");
 var gitPayload = JSON.parse(request.rawBody);
 var branch = "refs/heads/master";	// Add the branch that you need to trigger
 if (gitPayload != null || gitPayload != "") {

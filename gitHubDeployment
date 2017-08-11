@@ -1,0 +1,41 @@
+var gitPayload = JSON.parse(request.rawBody);
+var branch = "refs/heads/master"; // add the branch that you need to trigger
+if (gitPayload != null || gitPayload != "") {
+	try {
+		//check if the payload is a test from git
+		if (request.headers["x-github-event"] == "ping") {
+			return "success";
+		}
+		//check if payload is a deployment
+		if (request.headers["x-github-event"] == "deployment_status") {
+
+			//check the state of the deployment
+			var deploymentStatus = gitPayload.deployment_status.state;
+			if (deploymentStatus == "success") { //deployment finished you have status pending and success.
+
+				var deploymentId = gitPayload.deployment.id;
+				var deploybranch = gitPayload.deployment.ref;
+				if (deploybranch != branch) { //check if the deployment is done on the specified branch
+					return "Nothing to do"; /// nothing to do move along
+				}
+				//parse the payload
+				if (gitPayload.deployment) {
+					console.log("checking deployment Payload");
+					var deploymentPayload = JSON.parse(gitPayload.deployment.payload);
+					if (deploymentPayload.hasOwnProperty("trigger")) {
+						return "trigger is " + deploymentPayload.trigger + "deployment state is sucess";
+					}
+					//at this level you are sure that the deployment is done
+					//you can parse the deployment details like sha for example
+					//sha=gitPayload.deployment.sha;
+					//do your call for the external system.
+					return "do external call";
+				}
+			} else {
+				return "deployment stil pending";
+			}
+		}
+	} catch (e) {
+		console.log("Error in parsing deployment payload");
+	}
+}

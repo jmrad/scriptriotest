@@ -1,0 +1,139 @@
+// takes json array of orders - (a user could order 1, 2 or more products)
+// takes "transaction" params - (transaction is a document containing the global amount of orders and other common info)
+// queries and locks all orders - if one wrong rollbacks all -
+// if all ordered quantities are available -> update all food products with new available qtty and unlock -
+// then save the transaction then save orders.
+
+//order: {"quantity":"1.0","totalPrice":"6.0","price":"6.0","name":"food0007","foodProductID":"28954341E9A1DEBCCBDE93B9303E501B", "orderType": "dailyDish"}
+
+// orders: [{"quantity":"1.0","totalPrice":"6.0","price":"6.0","name":"food0007","foodProductID":"28954341E9A1DEBCCBDE93B9303E501B", "orderType": "dailyDish"}, {"quantity":"1.0","totalPrice":"6.0","price":"6.0","name":"food0007","foodProductID":"28954341E9A1DEBCCBDE93B9303E501B", "orderType": "catering"}]
+
+//transaction: {"cookID":"devicecook3","totalTransactionPrice":"10.0","deliveryPrice":"4.0","transactionDate":"2017-08-27T00:00:00+0000","userID":"foodie111","foodOrderingPrice":"6.0", "paymentMethod": "cash", "takeaway": "false", "userAddress": "33.1234,35.1234, achrafieh, sassine, building bank audi, floor 2"}
+
+var orders = JSON.parse(request.parameters.orders);
+var transactionID = null;
+var transaction = null;
+var updateFoodProductParams = [];
+
+try {
+
+	// Begin transaction
+	transaction = apsdb.beginTransaction();
+	for (var i = 0; i < orders.length; i++) {
+		var quantityOrdered = orders[i].quantity;
+		var params = {
+			"apsdb.store" : "kitchen",
+			"apsdb.query" : "apsdb.documentKey=\"" + orders[i].foodProductID + "\"",
+			"apsdb.queryFields" : "*",
+			"apsdb.lock" : "true"
+		};
+
+		var getFoodProductResult = apsdb.callApi("Query", params, null);
+
+		if (getFoodProductResult.metadata.status == "success") {
+			var foodProduct = getFoodProductResult.result.documents[0];
+			// If we do not have a document, fail
+			if (!foodProduct) {
+				throw "foodProductNotFound";
+			}
+			// We have a document, we need to verify that the availableQuantity covers the quantityOrdered
+			// in order to confirm the order, otherwise fail.
+			var availableQuantity = foodProduct.availableQuantity;
+			if (quantityOrdered > availableQuantity) {
+				throw "the wanted quantity is not available. the available quantity is: ".concat(availableQuantity, " for food product: ", foodProduct.name, " - id: ", foodProduct.key);
+
+				//throw {"status":"failure", "message":"the wanted quantity is not available. the available quantity is: ".concat(availableQuantity), "id":foodProduct.key, "name":foodProduct.name};
+
+			}
+			// If ordered qtty is available, prepare and store the params to update the doc in the following loop below
+			var updatedAvailableQuantity = availableQuantity - quantityOrdered;
+			var soldOut = "false";
+			if (updatedAvailableQuantity == 0) {
+				soldOut = "true";
+			}
+
+			var updateQueryFields = {};
+			updateQueryFields["key"] = orders[i].foodProductID;
+			updateQueryFields["availableQuantity"] = updatedAvailableQuantity;
+			updateQueryFields["soldOut"] = soldOut;
+			updateQueryFields["meta.types"] = {
+				"availableQuantity" : "numeric"
+			};
+
+			updateFoodProductParams.push(updateQueryFields);
+
+		} else {
+			throw getFoodProductResult.metadata.errorDetail;
+		}
+
+	}
+
+	// if the tests above succeed in confirming that all quantities of all ordered products are available
+	// then we proceed by placing the order, updating the "availableQuantity" and "soldOut" fields" with respective values
+	// then we commit and free the docs - then we save the "transaction" and "orders" documents.
+
+	//var defaultStoreDocuments = require("document");
+	//var kitchenDocuments = defaultStoreDocuments.getInstance("kitchen");
+
+	for (var j = 0; j < orders.length; j++) { // var updateResult = apsdb.callApi("SaveDocument", updateFoodProductParams[j], null);
+		//var updateResult = kitchenDocuments.update(updateFoodProductParams[j]);
+
+		//"apsdb.schema": "food_product",
+		var params = {
+			"apsdb.store" : "kitchen",
+			"apsdb.documentKey" : updateFoodProductParams[j].key,
+			"availableQuantity" : updateFoodProductParams[j].availableQuantity,
+			"soldOut" : updateFoodProductParams[j].soldOut,
+			"apsdb.update" : "true",
+			"availableQuantity.apsdb.fieldType" : "numeric"
+		};
+		var updateResult = apsdb.callApi("SaveDocument", params, null);
+
+		if (updateResult.metadata.status != "success") {
+			throw updateResult.metadata.errorDetail;
+		}
+	}
+
+	// Commit the transaction. The lock is released.
+	transaction.commit();
+
+	// Lastly save transaction and orders
+	// cookID, userID, deliveryPrice, foodOrderingPrice, totalTransactionPrice, transactionDate, paymentMethod, takeaway, userAddress
+	var ordersHelper = require("saveOrderByTransactionKey");
+	var transactionsHelper = require("saveTransaction");
+
+	var saveTransaction = transactionsHelper.saveTransaction(request.parameters.cookID,
+			request.parameters.userID,
+			request.parameters.deliveryPrice,
+			request.parameters.foodOrderingPrice,
+			request.parameters.totalTransactionPrice,
+			request.parameters.transactionDate,
+			request.parameters.paymentMethod,
+			request.parameters.takeaway,
+			request.parameters.userAddress);
+
+	if (saveTransaction.metadata.status != "success") {
+		throw saveTransaction.metadata.errorDetail;
+	} else {
+		transactionID = saveTransaction.result.document.key;
+	}
+
+	// save orders;
+	// transactionID, foodProductID, name, quantity, price, totalPrice
+	for (var k = 0; k < orders.length; k++) {
+		orders[k]["transactionID"] = transactionID;
+		var saveOrder = ordersHelper.saveOrder(orders[k].transactionID, orders[k].foodProductID, orders[k].name, orders[k].quantity, orders[k].price, orders[k].totalPrice);
+	}
+
+	if (saveOrder.metadata.status != "success") {
+		return saveOrder.metadata.errorDetail;
+	} else {
+		return {
+			"status" : "success",
+			"message" : "Order confirmed, placed - Transactions and orders completed successfully"
+		};
+	}
+} catch (exception) {
+	transaction.rollback();
+	throw exception;
+}

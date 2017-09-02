@@ -1,0 +1,2 @@
+var documents = require("document");
+return documents.query({"query":'apsST_scriptName="gitHubDeployment"', "fields":"*"});

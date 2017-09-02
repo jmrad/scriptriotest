@@ -1,0 +1,5 @@
+var result = {"speech": "test", "displayText": "test1", "source": "apiai-webhook-sample"};
+response.write(JSON.stringify(result));
+// whenever you manipulate the response object make sure to add your CORS settings to the header
+response.addHeaders(configuration.crossDomainHeaders);
+response.close();
